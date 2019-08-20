@@ -39,6 +39,6 @@ fi
 rm "/data/web_static/current"
 ln -s "/data/web_static/releases/test/" "/data/web_static/current"
 chown -R ubuntu:ubuntu "/data/"
-sed "/listen 80 default_server;/a #\nlocation /hbnb_static {\n alias /data/web_static/current/\n }\n#\n" /etc/nginx/sites-enabled/default
+sed "/listen 80 default_server;/a \nlocation /hbnb_static {\n alias /data/web_static/current/\n }\n" /etc/nginx/sites-enabled/default
 service nginx restart
 exit 0
