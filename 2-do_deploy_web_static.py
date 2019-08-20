@@ -27,6 +27,8 @@ def do_pack():
 
 def do_deploy(archive_path):
 
+    if not archive_path:
+        return False
     try:
         my_path = archive_path.split(".")[0]
         my_path = my_path.split("/")[1]
