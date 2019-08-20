@@ -35,14 +35,19 @@ def do_deploy(archive_path):
         run("tar -xzf /tmp/{}.tgz -C /data/web_static/releases/{}/"
             .format(my_path, my_path))
         run("rm -r /tmp/{}.tgz".format(my_path))
+        """
+        run("rm -r /data/web_static/releases/{}/"
+            .format(my_path))
+        """
         run(("mv /data/web_static/releases/{}/web_static/*" +
             " /data/web_static/releases/{}/")
             .format(my_path, my_path))
         run(" rm -rf /data/web_static/releases/{}/web_static/current"
             .format(my_path))
-        run("ln -s /data/web_static/current /data/web_static/releases/{}"
+        run("rm -rf /data/web_static/current")
+        run("ln -s /data/web_static/releases/{}/ /data/web_static/current"
             .format(my_path))
-        run("service nginx restart")
+        run("sudo service nginx restart")
         return True
     except:
         return False
