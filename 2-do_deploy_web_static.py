@@ -23,15 +23,21 @@ def do_pack():
     else:
         return None
 
+
 def do_deploy(archive_path):
     
-    try:
-        my_path = archive_path.split(".")[0]
-        put("{}".format(archive_path), "/tmp")
-        run("tar -xvf * -C /data/web_static/releases/{}".format(my_path))
-        run("rm -r /tmp/{}".format(archive_path))
-        run("ln -s /data/web_static/current /data/web_static/releases/{}".format(my_path))
+    #try:
+    my_path = archive_path.split(".")[0]
+    my_path = my_path.split("/")[1]
+    put("{}".format(archive_path), "/tmp")
+    run("mkdir -p /data/web_static/releases/{}/".format(my_path))
+    run("tar -xzf /tmp/{}.tgz -C /data/web_static/releases/{}/".format(my_path, my_path))
+    run("rm -r /tmp/{}.tgz".format(my_path))
+    run("mv /data/web_static/releases/{}/web_static/* /data/web_static/releases/{}/".format(my_path, my_path))
+    run(" rm -rf /data/web_static/releases/{}/web_static/current".format(my_path))
+    run("ln -s /data/web_static/current /data/web_static/releases/{}".format(my_path))
 
-        return True
-    except:
-        return False
+    return True
+    #except:
+        #print("fail")
+        #return False
