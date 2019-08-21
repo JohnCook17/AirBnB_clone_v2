@@ -6,7 +6,7 @@ from datetime import datetime
 from fabric.api import local, put, run, env
 from shlex import split
 
-env.hosts = ['35.196.125.111', '35.185.45.37']
+env.hosts = ['35.185.45.37', '34.74.14.46']
 
 
 def do_pack():
