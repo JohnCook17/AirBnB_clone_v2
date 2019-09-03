@@ -39,7 +39,6 @@ class DBStorage:
         """ method that returns everyting based on class name
         """
         my_dict = {}
-        #self.__session = sessionmaker(bind=self.__engine)
         sesh = self.__session()
         if cls is None:
             tables = [Amenity, City, Place, State, Review, User]
