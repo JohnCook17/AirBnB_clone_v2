@@ -29,7 +29,7 @@ class FileStorage:
             my_dict = {}
             for key, value in self.__objects.items():
                 if key.startswith(cls.__name__):
-                    my_dict[cls.__name__] = value
+                    my_dict[key] = value
             return my_dict
         return self.__objects
 
