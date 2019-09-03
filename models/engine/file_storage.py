@@ -70,3 +70,7 @@ class FileStorage:
                     self.__objects[key] = value
         except FileNotFoundError:
             pass
+    def close(self):
+        """Calls reload
+        """
+        self.reload()
